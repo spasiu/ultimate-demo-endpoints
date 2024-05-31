@@ -8,6 +8,7 @@ const SHOPIFY_SUBDOMAIN = 'envoy-dev-store';
 const SHOPIFY_ACCESS_TOKEN = '';
 
 express()
+    .use(express.static('public'))
     .get('/', (req, res) => res.send('Hello, World.'))
     .get('/ping', (req, res) => res.send('pong'))
     .get('/products', authHandler, async (req, res) => {
@@ -19,6 +20,7 @@ express()
             productId: item.product_id,
             name: item.name,
             productImageUrl: await getProductImageUrl(item.product_id),
+            price: item.price
         })));
 
 
