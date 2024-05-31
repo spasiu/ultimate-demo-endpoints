@@ -10,8 +10,8 @@ const SHOPIFY_ACCESS_TOKEN = '';
 express()
     .get('/', (req, res) => res.send('Hello, World.'))
     .get('/ping', (req, res) => res.send('pong'))
-    .get('/orders/:orderId/products', authHandler, async (req, res) => {
-        const response = await axios.get(`https://${SHOPIFY_SUBDOMAIN}.myshopify.com/admin/api/2024-04/orders/${req.params.orderId}.json`, {
+    .get('/products', authHandler, async (req, res) => {
+        const response = await axios.get(`https://${SHOPIFY_SUBDOMAIN}.myshopify.com/admin/api/2024-04/orders/${req.query.order_id}.json`, {
             headers: { 'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN },
         });
 
